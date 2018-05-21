@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "Feedly Open All Unread",
+  "version": "1.0",
+  "description": "Adds a button to feedly.com to open all unread articles in new tabs",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://feedly.com/*"
+      ],
+      "js": [
+        "content-script.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  }
+}
