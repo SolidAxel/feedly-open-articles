@@ -5,3 +5,4 @@ bin
 obj
 /.idea/.idea*
 web-ext-artifacts
+node_modules
