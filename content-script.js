@@ -25,10 +25,15 @@ observer.observe(document.querySelector('body'), {
     subtree: true
 });
 
-function open() {
+async function shouldConfirmManyTabs() {
+    const storage = await browser.storage.local.get("suppressConfirm");
+    return !storage.suppressConfirm;
+}
+
+async function open() {
     const unread = document.getElementsByClassName('unread');
 
-    if (unread.length >= 5 && !confirm(`Are you sure you want to open ${unread.length} tabs`)) {
+    if (unread.length >= 5 && await shouldConfirmManyTabs() && !confirm(`Are you sure you want to open ${unread.length} tabs`)) {
         return;
     }
 

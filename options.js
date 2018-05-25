@@ -1,14 +1,15 @@
 function saveOptions(e) {
     e.preventDefault();
-    let value = document.querySelector("#foreground").checked;
     browser.storage.local.set({
-        foreground: value
+        foreground: document.querySelector("#foreground").checked,
+        suppressConfirm: document.querySelector("#suppress-confirm").checked
     });
 }
 
 async function restoreOptions() {
-    let value = await browser.storage.local.get("foreground");
-    document.querySelector("#foreground").checked = value.foreground;
+    let storage = await browser.storage.local.get();
+    document.querySelector("#foreground").checked = storage.foreground;
+    document.querySelector("#suppress-confirm").checked = storage.suppressConfirm;
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
