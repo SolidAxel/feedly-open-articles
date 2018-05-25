@@ -1,16 +1,24 @@
 const observer = new MutationObserver(() => {
-    const buttons = document.querySelector('.actions-container');
-    if (!buttons) return;
+    const siblings = document.getElementsByClassName('mark-as-read-button-group');
 
-    if (buttons.querySelector('#open-unread')) return;
+    for (let e of siblings) {
+        const parent = e.parentElement;
 
+        if (!parent.querySelector('.open-unread')) {
+            addButton(parent);
+        }
+    }
+});
+
+function addButton(parent) {
     const button = document.createElement('button');
-    button.id = 'open-unread';
-    button.classList.add('secondary');
+    button.classList.add('secondary', 'open-unread');
     button.innerHTML = 'Open unread';
     button.onclick = open;
-    buttons.insertBefore(button, buttons.firstChild)
-});
+
+    parent.insertBefore(button, parent.firstChild)
+}
+
 
 observer.observe(document.querySelector('body'), {
     childList: true,
@@ -26,7 +34,7 @@ function open() {
 
     for (let x of unread) {
         browser.runtime.sendMessage({
-            href: x.querySelector('a.title').href 
+            href: x.querySelector('a.title').href
         });
-    } 
+    }
 }
