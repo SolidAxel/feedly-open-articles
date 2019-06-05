@@ -1,12 +1,8 @@
 const observer = new MutationObserver(() => {
-    const siblings = document.getElementsByClassName('mark-as-read-button-group');
+    const parent = document.getElementsByClassName('actions-container');
 
-    for (let e of siblings) {
-        const parent = e.parentElement;
-
-        if (!parent.querySelector('.open-unread')) {
-            addButton(parent);
-        }
+    if (parent.length && !parent[0].querySelector('.open-unread')) {
+        addButton(parent[0]);
     }
 });
 
