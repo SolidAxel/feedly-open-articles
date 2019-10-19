@@ -26,6 +26,11 @@ async function shouldConfirmManyTabs() {
     return !storage.suppressConfirm;
 }
 
+async function shouldMarkRead() {
+    const storage = await browser.storage.local.get("markRead");
+    return storage.markRead;
+}
+
 async function open() {
     const unread = document.getElementsByClassName('unread');
 
@@ -34,8 +39,17 @@ async function open() {
     }
 
     for (let x of unread) {
+        // noinspection ES6MissingAwait
         browser.runtime.sendMessage({
             href: x.querySelector('a.title').href
         });
+    }
+
+    if (await shouldMarkRead()) {
+        document.getElementsByClassName('MarkAsReadButton')[0].click();
+
+        await new Promise(resolve => requestAnimationFrame(resolve));
+
+        document.querySelector('li.MenuItem:nth-child(2)').click();
     }
 }
