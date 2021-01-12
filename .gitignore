@@ -11,3 +11,4 @@ node_modules
 /.idea/workspace.xml
 /.idea/feedly-open-unread.iml
 /.idea/modules.xml
+*.iml
