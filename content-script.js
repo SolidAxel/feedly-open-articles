@@ -32,7 +32,7 @@ async function shouldMarkRead() {
 }
 
 async function open() {
-    const unread = document.getElementsByClassName('unread');
+    const unread = document.getElementsByClassName('entry--unread');
 
     if (unread.length >= 5 && await shouldConfirmManyTabs() && !confirm(`Are you sure you want to open ${unread.length} tabs`)) {
         return;
@@ -41,7 +41,7 @@ async function open() {
     for (let x of unread) {
         // noinspection ES6MissingAwait
         browser.runtime.sendMessage({
-            href: x.querySelector('a.title').href
+            href: x.querySelector('a.entry__title').href
         });
     }
 

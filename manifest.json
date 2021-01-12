@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Feedly Open All Unread",
-  "version": "1.5",
+  "version": "1.5.1",
   "description": "Adds a button to feedly.com to open all unread articles in new tabs",
   "homepage_url": "https://github.com/cypressious/ff-feedly-open-unread",
   "content_scripts": [
