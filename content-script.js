@@ -32,7 +32,7 @@ async function shouldMarkRead() {
 }
 
 async function open() {
-    const unread = document.getElementsByClassName('entry--unread');
+    const unread = document.getElementsByClassName('quicklisted');
 
     if (unread.length >= 5 && await shouldConfirmManyTabs() && !confirm(`Are you sure you want to open ${unread.length} tabs`)) {
         return;
