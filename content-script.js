@@ -10,6 +10,7 @@ function addButton(parent) {
     const button = document.createElement('button');
     button.classList.add('secondary', 'open-unread');
     button.innerHTML = 'Open unread';
+    button.style.background = '#2bb24c';
     button.onclick = open;
 
     parent.insertBefore(button, parent.firstChild)
