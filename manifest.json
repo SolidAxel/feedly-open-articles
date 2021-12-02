@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://feedly.com/*"
+        "*://feedly.com/i/saved"
       ],
       "js": [
         "browser-polyfill.min.js",
