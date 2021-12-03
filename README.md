@@ -1,6 +1,6 @@
-# Firefox & Chrome Addon "Feedly Open All Saved"
+# Firefox & Chrome Addon "Feedly Open All Articles"
 
-Adds a button to feedly.com to open all saved articles in new tabs.
+Adds a button to feedly.com to open all saved or unread articles in new tabs.
 
 ## Downloads for Original Addon
 
