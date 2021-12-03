@@ -44,10 +44,9 @@ function addButton(parent) {
   button.style.background = '#2bb24c';
   button.classList.add('secondary', 'open-unread');
 
-  if (window.location.href == 'https://feedly.com/i/saved') {
+  if (window.location.href === 'https://feedly.com/i/saved') {
     button.innerHTML = 'Open Saved';
-  }
-  else{ 
+  } else {
     button.innerHTML = 'Open Unread';
   }
   button.onclick = open;
