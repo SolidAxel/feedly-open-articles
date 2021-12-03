@@ -41,11 +41,16 @@ async function open() {
 }
 function addButton(parent) {
   const button = document.createElement('button');
-  button.classList.add('secondary', 'open-unread');
-  button.innerHTML = 'Open unread';
   button.style.background = '#2bb24c';
-  button.onclick = open;
+  button.classList.add('secondary', 'open-unread');
 
+  if (window.location.href == 'https://feedly.com/i/saved') {
+    button.innerHTML = 'Open Saved';
+  }
+  else{ 
+    button.innerHTML = 'Open Unread';
+  }
+  button.onclick = open;
   parent.insertBefore(button, parent.firstChild);
 }
 
