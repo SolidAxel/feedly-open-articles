@@ -24,5 +24,13 @@
   "options_ui": {
     "page": "options.html"
   },
-  "permissions": ["storage"]
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "browser_action": {
+    "default_icon": "icons/icon_x32.png",
+    "default_title": "Feedly Open All",
+    "default_popup": "options.html"
+  }
 }
