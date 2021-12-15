@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Feedly Open All",
-  "version": "2.0.0",
+  "version": "0.1.0",
   "description": "Adds a button to feedly.com to open all unread or saved articles in new tabs.",
   "homepage_url": "https://github.com/SolidAxel/ff-feedly-open-articles",
   "content_scripts": [

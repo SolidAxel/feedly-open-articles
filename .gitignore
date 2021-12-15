@@ -4,7 +4,6 @@
 bin
 obj
 /.idea/.idea*
-web-ext-artifacts
 node_modules
 /feedly-open-unread.sln.DotSettings.user
 /feedly-open-unread.zip
