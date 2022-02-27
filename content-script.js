@@ -54,7 +54,7 @@ function addButton(parent) {
 }
 
 const observer = new MutationObserver(() => {
-  const parent = document.getElementsByClassName('actions-container');
+  const parent = document.getElementsByClassName('button-dropdown');
 
   if (parent.length && !parent[0].querySelector('.open-unread')) {
     addButton(parent[0]);
