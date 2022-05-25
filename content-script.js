@@ -41,7 +41,26 @@ async function open() {
 }
 function addButton(parent) {
   const button = document.createElement('button');
+  button.style.borderRadius = '4px';
+  button.style.paddingLeft= '11px';
+  button.style.paddingRight = '11px';
+  button.style.paddingBottom = '10px';
+  button.style.paddingTop = '10px';
+  button.style.fontWeight = '700';
+  button.style.fontSize = '12px';
+  button.style.color = '#FFFFFF';
+  button.style.fontFamily = 'inherit';
+  button.style.cursor = 'pointer';
+  button.style.textAlign = 'center';
+  button.style.minWidth = '50px';
   button.style.background = '#2bb24c';
+  button.style.alignItems = 'center';
+  button.style.display='inline flex';
+  button.style.textAlign = 'center';
+  button.style.lineHeight = '1rem';
+  button.style.marginRight = '10px';
+  button.style.borderColor = '#2bb24c';
+  button.style.borderStyle = 'solid';
   button.classList.add('secondary', 'open-unread');
 
   if (window.location.href === 'https://feedly.com/i/saved') {
