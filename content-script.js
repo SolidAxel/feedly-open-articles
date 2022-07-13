@@ -55,12 +55,13 @@ function addButton(parent) {
   button.style.minWidth = '50px';
   button.style.background = '#2bb24c';
   button.style.alignItems = 'center';
-  button.style.display='inline flex';
+  button.style.display='inline-flex';
   button.style.textAlign = 'center';
   button.style.lineHeight = '1rem';
   button.style.marginRight = '10px';
   button.style.borderColor = '#2bb24c';
   button.style.borderStyle = 'solid';
+  button.style.position = 'relative'
   button.classList.add('secondary', 'open-unread');
 
   if (window.location.href === 'https://feedly.com/i/saved') {
@@ -73,7 +74,7 @@ function addButton(parent) {
 }
 
 const observer = new MutationObserver(() => {
-  const parent = document.getElementsByClassName('button-dropdown');
+  const parent = document.getElementsByClassName('okOnNFlwXtGnQCE5o7BA bBpjw3M3dedNGZyxCbjX Gh5K0_DjtI_5KuvJ747A gIXAcUM9jakj_M6xTbui PXj2cdpxF7XZ6uqYqs7s');
 
   if (parent.length && !parent[0].querySelector('.open-unread')) {
     addButton(parent[0]);
