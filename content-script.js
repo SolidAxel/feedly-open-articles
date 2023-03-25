@@ -14,22 +14,40 @@ async function shouldOpenSaved() {
 }
 async function open() {
   let unread;
+  let saved;
   if (await shouldOpenSaved()) {
-    unread = document.getElementsByClassName('quicklisted');
+    saved = document.getElementsByClassName('EntryMetadataReadLater');
+    console.log(saved)
   } else {
-    unread = document.getElementsByClassName('entry--unread');
+    unread = document.getElementsByClassName('entry u4');
   }
 
-  if (unread.length >= 5 && await shouldConfirmManyTabs() && !confirm(`Are you sure you want to open ${unread.length} tabs`)) {
-    return;
+
+  if (await shouldOpenSaved()) {
+    if (saved.length >= 5 && await shouldConfirmManyTabs() && !confirm(`Are you sure you want to open ${saved.length} tabs`)) {
+      return;
+    }
+    for (const x of saved) {
+      // noinspection ES6MissingAwait
+      browser.runtime.sendMessage({
+        href: x.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('a[class*="EntryTitleLink"]').href,
+      });
+    }
+  } else {
+    if (unread.length >= 5 && await shouldConfirmManyTabs() && !confirm(`Are you sure you want to open ${unread.length} tabs`)) {
+      return;
+    }
+    for (var i = 0; i < unread.length; i++) {
+      // Only if there is only single class
+      if (unread[i].className == 'entry u4') {
+        // Do something with the element e[i]
+        browser.runtime.sendMessage({
+          href: unread[i].querySelector('a[class*="EntryTitleLink"]').href,
+        });
+      }
+    }
   }
 
-  for (const x of unread) {
-    // noinspection ES6MissingAwait
-    browser.runtime.sendMessage({
-      href: x.querySelector('a.entry__title').href,
-    });
-  }
 
   if (await shouldMarkRead()) {
     document.getElementsByClassName('MarkAsReadButton')[0].click();
@@ -39,10 +57,10 @@ async function open() {
     document.querySelector('li.MenuItem:nth-child(2)').click();
   }
 }
-function addButton(parent) {
+async function addButton(parent) {
   const button = document.createElement('button');
   button.style.borderRadius = '4px';
-  button.style.paddingLeft= '11px';
+  button.style.paddingLeft = '11px';
   button.style.paddingRight = '11px';
   button.style.paddingBottom = '10px';
   button.style.paddingTop = '10px';
@@ -55,7 +73,7 @@ function addButton(parent) {
   button.style.minWidth = '50px';
   button.style.background = '#2bb24c';
   button.style.alignItems = 'center';
-  button.style.display='inline-flex';
+  button.style.display = 'inline-flex';
   button.style.textAlign = 'center';
   button.style.lineHeight = '1rem';
   button.style.marginRight = '10px';
@@ -64,7 +82,7 @@ function addButton(parent) {
   button.style.position = 'relative'
   button.classList.add('secondary', 'open-unread');
 
-  if (window.location.href === 'https://feedly.com/i/saved') {
+  if (await shouldOpenSaved()) {
     button.innerHTML = 'Open Saved';
   } else {
     button.innerHTML = 'Open Unread';
@@ -74,7 +92,7 @@ function addButton(parent) {
 }
 
 const observer = new MutationObserver(() => {
-  const parent = document.getElementsByClassName('okOnNFlwXtGnQCE5o7BA bBpjw3M3dedNGZyxCbjX Gh5K0_DjtI_5KuvJ747A gIXAcUM9jakj_M6xTbui PXj2cdpxF7XZ6uqYqs7s');
+  const parent = document.getElementsByClassName('okOnNFlwXtGnQCE5o7BA');
 
   if (parent.length && !parent[0].querySelector('.open-unread')) {
     addButton(parent[0]);
